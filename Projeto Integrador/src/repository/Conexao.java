@@ -5,13 +5,16 @@ import java.sql.SQLException;
 public class Conexao{
     public static Connection conectar(){
         Connection conexao = null;
+         String url = "jdbc:mysql://localhost:3307/sistema_tutorial";
+        String user = "root";
+        String pass = "";
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            conexao = DriverManager.getConnection("jdbc:mysql://localhost:3307/sistema_tutorial", "root", "");
+           Class.forName("com.mysql.cj.jdbc.Driver");
+           conexao = DriverManager.getConnection(url, user, pass);
         }
         catch (ClassNotFoundException e){
             System.out.println("Erro: Driver JDBC não encontrado. ");
+            e.printStackTrace();
         }
         catch (SQLException e){
             System.out.println("Erro ao conectar: " + e.getMessage());
@@ -23,3 +26,4 @@ public class Conexao{
         conectar();
     }
 }
+
